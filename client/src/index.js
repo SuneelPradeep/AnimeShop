@@ -12,7 +12,6 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 const DOMAIN_INFO = process.env.REACT_APP_DOMAIN_INFO;
 const CLIENT_INFO = process.env.REACT_APP_CLIENT_INFO;
 
-console.log('DOMAIN INFO',DOMAIN_INFO,CLIENT_INFO);
 
 root.render(
     <Auth0Provider domain={DOMAIN_INFO}
@@ -31,6 +30,6 @@ root.render(
 );
 
 // If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(//console.log))
+// to log results (for example: reportWebVitals(//////console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

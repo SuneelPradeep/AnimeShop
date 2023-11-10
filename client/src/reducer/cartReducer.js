@@ -9,11 +9,10 @@
         //     id : product.id +color , amount, image : product.image[0].url,max : product.stock,
         //     name : product.name, price : product.price, color : color
         // }
-        let existingProduct = state.cart.find(
-          (curItem) => curItem.id === id + color
+       let existingProduct = state.cart.find(
+          (curItem) => curItem.id === id + (color ? color : '')
         );
-        console.log('MAIN -1th CHECK',id,color,amount,existingProduct);
-        if(existingProduct){
+       if(existingProduct){
             let updatedcart = (state.cart).map((ele)=>  {
               
               if(ele.id === id+color){
@@ -25,15 +24,14 @@
               } 
               else return ele                         
             })
-            
             return {...state, cart : updatedcart}
         }
         else {
+          
           let newCartItems = {
-            id : product.id +color , amount, image : product.image[0].url,max : product.stock,
+            id : product._id +(color ? color :'') , amount, image : product.image[0].url,max : product.stock,
             name : product.name, price : product.price, color : color
         }
-        
           return {...state, cart : [...state.cart,newCartItems]};
         }
         
@@ -48,8 +46,8 @@
         return {...state,cart : []}
 
       case "INCR_DECR_QUANTITY" :
+        
          const {id : ids,str} = action.payload 
-         console.log('MAIN 0TH CHECK',ids ,str);           
       if(str === '+'){
         let CartItem = state.cart.map((ele)=>{
           if(ele.id === ids){
@@ -61,8 +59,7 @@
           } 
           else return ele
          })
-         //console.log('MAIN 1ST CHECK',CartItem); 
-         
+        
         return {...state , cart : CartItem}
       }
       else{
@@ -74,8 +71,7 @@
           } 
           else return ele
          })
-         //console.log('MAIN 2ndT CHECK',CartItem); 
-        return {...state , cart : CartItem}
+         return {...state , cart : CartItem}
       }
 
     case 'UPDATE_TOTAL_ITEMS_AND_PRICE':
@@ -107,7 +103,6 @@
 
     //ANOTHER EASY REDUCE METHOD IS accummaltorTHE 
 
-    console.log('CART inside is IN REDUCER IS',state.cart);
     if(state.cart !==null){
       let { total_items, total_amount } = state.cart.reduce(
         (accum, curElem) => {

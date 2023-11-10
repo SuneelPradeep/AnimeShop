@@ -8,10 +8,9 @@ import CartToToggle from './CartToToggle';
 import { useCartContext } from '../context/cart_context'
 
 const AddtoCart = ({product}) => {
-    const {id,colors,stock} = product
+    const {_id : id,colors,stock} = product
     const {AddToCart, cart} = useCartContext();
-    console.log('the cart is xxxxxxxxxxx',cart); 
-    const [usecolor,setusecolor] = useState(colors[0]);
+  const [usecolor,setusecolor] = useState(colors[0] ? colors[0] : '');
     const [amount, setamount] = useState(1);
 
     const setDecrease = ()=>{

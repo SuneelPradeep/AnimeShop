@@ -12,15 +12,14 @@ import {GlobalStyle } from './GlobalStyle'
 import Star from "./components/Star";
 import AddtoCart from "./components/AddtoCart";
 
-//const API = "https://api.pujakaitem.com/api/products/";
-const API = "http://localhost:5000/api/products/"; 
+// const API = "http://localhost:5000/api/products/"; //
+const API = process.env.REACT_APP_API_URL
 const SingleProduct= ()=>{
 
     const {id}  = useParams();
-  console.log('the _id in singleproduct is ', id);
    const {isSingleLoading,getSingleProduct,singleProduct} = useProductContext();
    const {id: alias,image,rating,stars, reviews,name,company, description,category,price,stock} = singleProduct;
- 
+   
   
  useEffect(()=>{
 
@@ -82,7 +81,7 @@ const SingleProduct= ()=>{
                    
               </div>
               <hr />
-              {stock >0 && <AddtoCart product= {singleProduct} /> }
+              {stock >0 && <AddtoCart product={singleProduct} /> }
         </div>
       </div>
     </Container>

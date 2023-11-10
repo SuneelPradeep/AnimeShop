@@ -6,8 +6,7 @@ import { useCartContext } from '../context/cart_context'
 
 
 const CartItem = ({id,image,color,amount,price,name}) => {
-
-   const {removeItem,IncDecQuantity} = useCartContext();
+  const {removeItem,IncDecQuantity} = useCartContext();
   const setDecrease = (id,str)=>{
     IncDecQuantity(id,str)
    // amount > 1  ? setamount(amount-1) : setamount(1)

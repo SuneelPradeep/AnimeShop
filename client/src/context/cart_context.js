@@ -5,11 +5,12 @@ const cartContext = createContext()
 
  const getLocalCartData = ()=>{
     let data = localStorage.getItem("CartValues")
-   //console.log('cart inside the data0 is',data,typeof data);
-    if(data === [] || data===undefined || data===null || data==={} || data ==='' || data==='null'){
-    //console.log('cart inside the data1 1is',data);
-      return  [] ;}
-      else{  console.log('cart inside the data2 is',data); return JSON.parse(data); }
+//     if(data?.length===0 || data===undefined || data===null || data ==='' || data==='null'){
+//      return  [] ;}
+//       else{ 
+        const parsedData = JSON.parse(data)
+       if(!Array.isArray(parsedData)) return [] 
+         return parsedData;
  }
 const initialState = {
     cart : getLocalCartData(), 
@@ -18,7 +19,6 @@ const initialState = {
     shipping : 50000,
     
 }
-console.log('the cart in init state',initialState);
 const CartContextProvider = ({children})=>{
 
     const [state,dispatch] = useReducer(cartReducer,initialState)

@@ -11,8 +11,8 @@ import reducer from "../reducer/Productreducer";
  
 const AppContext = createContext();
 
-//const api = "https://api.pujakaitem.com/api/products";
-const api = "http://localhost:5000/api/products/"; 
+// const api = "http://localhost:5000/api/products/"; 
+const api = process.env.REACT_APP_API_URL
 const initialValue = {
   isLoading :false,
   isError: false,
@@ -40,8 +40,7 @@ const AppProvider = ( { children }) => {
   }
 
   const getSingleProduct = async (url)=>{
-   console.log('the url for singleproduct in context',url);
-
+  
     dispatch({type:'API_SINGLELOADING'})
     try {
       const res = await axios.get(url)

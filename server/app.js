@@ -26,10 +26,8 @@ const start = async()=>{
         await connectDB(); 
         
         app.listen(PORT, (req,res)=>{
-           console.log( ` yes connected to Port ${PORT}`) 
         })
     } catch (error) {
-        console.log(error) ;
     }
 }
 

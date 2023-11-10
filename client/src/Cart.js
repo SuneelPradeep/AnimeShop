@@ -8,9 +8,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 const Cart = () => {
   const {cart,clearCart,total_amount,shipping} = useCartContext()
   const {isAuthenticated, user} = useAuth0()
-  console.log('cart inside is CART DIV',cart,typeof cart);
-
-  if(cart ===[] || cart===null || cart.length <=0){
+  
+  if(cart===null || cart?.length <=0){
     return <EmptyDiv ><h3>No items in the Cart</h3></EmptyDiv>
   }
 
@@ -33,7 +32,7 @@ const Cart = () => {
            <hr />  
            <div className="cart-item">
            {cart.map((ele,id)=>{
-             return  <CartItem key={id} {...ele} />                 
+            return  <CartItem key={id} {...ele} />                 
           })}
           </div>
          </div>

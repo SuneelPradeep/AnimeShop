@@ -4,15 +4,10 @@ const  FilterReducer = (state,action)=>{
      switch(action.type){
         case "LOAD_FILTER_PRODUCTS" : 
         let pricearr = (action.payload).map((e)=> e.price)
-               // console.log('the price is',price);
-             //   console.log('math apply',Math.max.apply(null,price));      // to not get -Infinity we should keep first value as null or Math or undefined, anything so that it takes it and thinks of it as first and runs according to it by applying one by one
-            // 1st way 
+           // 1st way 
             // second is 
            // let hey = price.reduce((init,ele)=> Math.max(init,ele),0)     // have to use initial vlaue so
-           // console.log('the hey is ',hey);
-           //3rd 
-           //console.log('sus', Math.max(...price));
-           let maxPriceval = Math.max(...pricearr);
+          let maxPriceval = Math.max(...pricearr);
              return{ ...state ,filter_products :[...action.payload] ,
                 all_products : [...action.payload] ,filters: {...state.filters, maxPrice: maxPriceval,price : maxPriceval}}
         case "LOAD_GRID_VIEW": 
@@ -74,13 +69,11 @@ const  FilterReducer = (state,action)=>{
                 else {
                     tempdatas =  tempdatas.filter((ele)=> ele.price <= price)
                 }
-                console.log('final',{...state, filter_products: tempdatas});
-               
+                
                 
                 
                 return {...state, filter_products: tempdatas}
             case "CLEAR_FILTER" :
-                console.log('intial',action.payload);
                 let data = action.payload;
                 data = {...data, price : state.filters.maxPrice,  maxPrice :state.filters.maxPrice}
                 return {...state, filters: data}
